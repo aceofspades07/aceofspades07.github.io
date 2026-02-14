@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIP-Loco: A Quadrupedal Robot Locomotion Framework | Karan Nair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation Banner -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="../index.html" class="navbar-brand">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
+                </svg>
+                Karan Nair
+            </a>
+            <div class="navbar-links">
+                <a href="../projects.html" class="nav-link">Projects</a>
+                <a href="../Resume - Karan Nair.pdf" class="nav-link" target="_blank">Resume</a>
+
+                <div class="navbar-social">
+                    <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank"
+                        aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in"
+                        class="nav-social-icon" target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container blog-post main-content">
+        <header class="blog-header">
+            <a href="../index.html"
+                style="color: var(--secondary-text); text-decoration: none; font-size: 0.9rem;">&larr; Back to Home</a>
+            <h1 class="blog-title">PIP-Loco: A Quadrupedal Robot Locomotion Framework - Genesis Implementation for
+                Unitree Go2</h1>
+            <p class="blog-meta">A deep dive into how I trained a robot dog on my laptop</p>
+        </header>
+
+        <div class="blog-content">
+            <img src="../blog-posts/piploco/assets/pip-loco-recording.webp" alt="Unitree Go2 Walking"
+                style="margin-top: 0; margin-bottom: 2rem;">
+
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>The TL;DR</h2>
+            <p>Last year, researchers from Stochastic Robotics Lab, IISc Bangalore, published a fascinating paper at
+                ICRA 2025 titled <a href="https://www.stochlab.com/PIP-Loco/"><strong>PIP-Loco: A Proprioceptive
+                        Infinite Horizon Planning Framework for Quadrupedal Robot Locomotion</strong></a>. It proposed
+                embedding the predictive foresight of Model Predictive Control directly into a reactive Reinforcement
+                Learning policy using an internal world model, for the blind locomotion of a quadruped.</p>
+            <p>I read it, thought the architecture was brilliant, and immediately went hunting for the GitHub
+                repository.</p>
+            <p><strong>Result:</strong> No code online.</p>
+            <p>So, I decided to build it myself. I engineered the complete PIP-Loco framework from the ground up in the
+                <strong>Genesis Simulation Engine</strong>. I
+                trained the full blind locomotion policy on my <strong>laptop's GPU</strong> (RTX 3050 Ti) in about
+                <strong>4 hours of training time</strong>. The resulting policy enables the robot dog to walk, turn, and
+                recover from violent pushes - all without seeing the ground or knowing its actual body velocity.
+            </p>
+            <h3>No motion capture. No LiDAR. No leg odometry. <strong>Just raw joint encoders and an IMU.</strong></h3>
+
+            <p style="margin-bottom: 0.5rem; color: #aaa;">The full implementation is open-source:</p>
+
+            <a href="https://github.com/aceofspades07/pip-loco" class="github-card" target="_blank"
+                style="margin: 0 0 3rem 0;">
+                <div class="github-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </div>
+                <div class="github-text">
+                    <span class="github-repo">aceofspades07/pip-loco</span>
+                    <span class="github-desc">View the full implementation on GitHub</span>
+                </div>
+            </a>
+
+
+
+
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>Why This Matters</h2>
+            <h3><strong>There's this classic tension in robotics:</strong></h3>
+            <p><strong>MPC folks say:</strong> <em>"We need accurate models and state estimation! How else can we plan
+                    optimal trajectories?"</em></p>
+            <p><strong>RL folks say:</strong> <em>"Just throw a neural network at it. End-to-end learning handles
+                    everything. Magic!"</em></p>
+            <p>Both are right. Both are wrong.</p>
+            <p>MPC gives you interpretable, predictable behavior - but it chokes when your state estimate is bad.<br>
+                RL learns robust policies - but reactive policies can't plan ahead.</p>
+            <p>PIP-Loco says: <strong>why not both?</strong> Train an RL policy that also learns to <em>imagine</em> the
+                future. That's the core idea.</p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>The Setup: Lying to the Actor</h2>
+            <p>Here's the trick that makes this work: <strong>asymmetric actor-critic</strong>.</p>
+            <p>During training, I have access to everything — true velocity, friction coefficients, terrain heights,
+                external forces. It's a simulator, after all.</p>
+            <p>But the robot won't have any of that in the real world.</p>
+            <p>So:</p>
+            <ul>
+                <li>The <strong>Actor</strong> (the policy that actually runs on the robot) only sees what a real robot
+                    would see: joint positions, joint velocities, IMU data, and commanded velocities. That's a
+                    45-dimensional vector - I will call these the 'blind' observations.</li>
+                <li>The <strong>Critic</strong> (the value function, only used during training) gets a 250-dimensional
+                    privileged state vector, filled with all the simulator data - I will call these the 'privileged'
+                    observations.</li>
+            </ul>
+            <p>The critic basically has the answer key. It knows the true velocity, the friction, the terrain heights,
+                everything. This makes value estimation way more accurate, which speeds up learning — but the actor
+                never sees any of it.</p>
+
+            <p><strong>Actor input (45 dims):</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>What</th>
+                        <th>Dims</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Angular velocity (gyro)</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Gravity direction</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Velocity commands</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Joint positions</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>Joint velocities</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>Last actions</td>
+                        <td>12</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>The actor gets velocity estimates from a learned estimator and <em><strong>dreams</strong></em> from a
+                world model - these two models constitute what is called <em><strong>the internal model</strong></em>.
+            </p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>The Velocity Problem</h2>
+            <p>Okay, so the actor needs to track velocity commands. But how does it know how fast it is going?</p>
+            <p><strong>Option 1: Leg odometry.</strong> Count how fast the legs are moving, assume the feet aren't
+                slipping, integrate. Works great on carpet. Falls apart on tile, ice, or any surface where feet actually
+                slip.</p>
+            <p><strong>Option 2: Learn the patterns.</strong></p>
+            <p>I trained a Temporal Convolutional Network (TCN) to predict body velocity from the last 50 timesteps of
+                observations. No kinematic assumptions. No slip models. Just: "here's what the robot's joint encoders
+                and IMU returned for the last one second, what linear body velocity does that correspond to?"</p>
+
+            <p>$$ \hat{v} = f_{\text{TCN}}(o_{t-50:t}) $$</p>
+
+            <p>The architecture is pretty standard:</p>
+            <ul>
+                <li>3 conv layers (kernel size 3)</li>
+                <li>Channels: 45 → 128 → 64 → 32</li>
+                <li>BatchNorm after each conv (this is important—more below)</li>
+                <li>MLP head: flatten → 128 → 3</li>
+            </ul>
+
+            <p><strong>Why BatchNorm?</strong> When the robot gets pushed or hits a weird terrain patch, the observation
+                distribution shifts hard. BatchNorm keeps the intermediate activations normalized, so the network
+                doesn't forget how to estimate the velocity accurately</p>
+            <p>Training is just MSE against the simulator's ground-truth velocity. Simple and effective.</p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>The 'No Latent Model' Dreamer: Imagining the Future</h2>
+            <p>Here's where it gets interesting.</p>
+            <p>Reactive policies respond to the current state. But locomotion benefits from <em>anticipation</em>. If
+                the policy can "imagine" the consequences of its actions several steps ahead, it can preemptively adjust
+                gait to maintain stability.</p>
+            <p>The NLM Dreamer is a <strong>world model</strong> composed of four independent MLPs. Unlike variational
+                approaches (e.g., Dreamer-V2), it operates directly in observation space. No latent encoding, no
+                reconstruction loss, no KL divergence tuning - which is why it is called as 'No Latent' model.</p>
+            <p>It consists of four Multi-Layer Perceptrons:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Network</th>
+                        <th>Input → Output</th>
+                        <th>What it does</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dynamics</td>
+                        <td>(obs, action) → next_obs</td>
+                        <td>Predict next observation</td>
+                    </tr>
+                    <tr>
+                        <td>Reward</td>
+                        <td>(obs, action) → reward</td>
+                        <td>Predict immediate reward</td>
+                    </tr>
+                    <tr>
+                        <td>Policy</td>
+                        <td>obs → action</td>
+                        <td>Mimic the actor's behaviour to predict actions</td>
+                    </tr>
+                    <tr>
+                        <td>Value</td>
+                        <td>obs → value</td>
+                        <td>Mimics the critic's behaviour</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>At inference time, the dreamer <strong>'rooms out'</strong> 5 steps into the future:</p>
+
+            <pre><code>current_obs → policy → action → dynamics → next_obs
+next_obs → policy → action → dynamics → next_next_obs
+... repeat for 5 steps
+</code></pre>
+
+            <p>This number, 5, is known as the 'horizon' (H).</p>
+            <p>These 5 predicted future observations - the 'dreams' - get flattened and fed to the actor.</p>
+            <p>So the actor sees: current state + velocity estimate + what the world model thinks will happen for the
+                next 5 steps.<br>
+                Total actor input: \(45 + 3 + (5 \times 45) = 273\) dimensions.</p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>The Training Loop</h2>
+            <p>This is where things got tricky.</p>
+            <p>I had to train three networks concurrently:</p>
+            <ol>
+                <li><strong>Velocity Estimator</strong> — supervised learning (MSE against true velocity)</li>
+                <li><strong>Dreamer</strong> — supervised learning (MSE against actual next states, rewards, etc.)</li>
+                <li><strong>Actor-Critic</strong> — PPO (policy gradients)</li>
+            </ol>
+            <p>If you just backpropagate through everything with one optimizer, it's a mess. PPO gradients are noisy.
+                Supervised gradients are clean. They interfere with each other. Gradient collapse ensues. The
+                Actor-Critic may wrongfully modify the estimator's weights just to minimize its own loss function -
+                which defeats the purpose.</p>
+            <p><strong>The fix:</strong> Three separate optimizers. Each one only touches its own network.</p>
+
+            <pre><code class="language-python">optimizer_est = Adam(estimator.parameters(), lr=1e-4)
+optimizer_dream = Adam(dreamer.parameters(), lr=1e-4)
+optimizer_ppo = Adam([*actor.parameters(), *critic.parameters()], lr=1e-3)
+</code></pre>
+
+            <p>And crucially, when feeding velocity estimates and dreams to the actor, I <strong>detached</strong> them:
+            </p>
+
+            <pre><code class="language-python">velocity = estimator(obs_history).detach()
+dreams = dreamer.generate_dreams(obs).detach()
+actor_input = torch.cat([obs, velocity, dreams], dim=-1)
+</code></pre>
+
+            <p>This is a one-way mirror. The estimator and dreamer inform the actor, but PPO gradients can't flow back
+                into them. Very clean.</p>
+
+            <img src="../blog-posts/piploco/assets/training-architecture.png" alt="The Training Architecture">
+
+            <p><em>
+                    <center> <strong>Figure 1:</strong>
+                        The training architecture of PIP-Loco. Source : <a
+                            href="https://www.stochlab.com/PIP-Loco/">PIP-Loco</a> by Shirwatkar et al. (ICRA 2025).
+                    </center>
+                </em>
+            </p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>Stopping It From Destroying Itself</h2>
+            <p>Real motors have limits. The Go2's hip motors max out at 45 Nm. If the policy commands more than that,
+                you fry the motor.</p>
+            <p>Following <a href="https://arxiv.org/abs/2403.01410">Nilaksh et al. (ICRA 2024)</a>, just like specified
+                in the PIP-Loco paper, I used <strong>quadratic barrier penalties</strong>. Instead of a hard constraint
+                (which is non-differentiable), there's a soft penalty that kicks in <em>before</em> the limit:</p>
+
+            <p>$$ \mathcal{R}_{\tau} = -\sum_{j} \max\left(0, |\tau_j| - 0.9 \cdot 45\right)^2 $$</p>
+
+            <p>The penalty activates at 90% of the limit (40.5 Nm) and ramps up quadratically. Think of it like a
+                repulsive force field around the danger zone—the closer you get, the harder it pushes back. Same idea,
+                but for joint velocities and torques.</p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>Results</h2>
+            <p>Training: ~4 hours on RTX 3050 Ti, 1024 parallel envs, ~160M timesteps.</p>
+            <p>The robot learns to:</p>
+            <ul>
+                <li>Track velocity commands in all directions</li>
+                <li>Recover from 1 m/s pushes</li>
+                <li>Walk on randomized friction surfaces</li>
+                <li>Maintain balance with shifted center of mass</li>
+            </ul>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>What's Next</h2>
+            <p>The Dreamer isn't just a training tool — it's a deployable world model.</p>
+            <p>Next step: plug it into an <strong>MPPI (Model Predictive Path Integral)</strong> controller for online
+                trajectory optimization. The dreamer will generate a sequence of 'dreams', which the MPPI planner will
+                use for generating an optimal action.</p>
+            <p>The RL policy handles robust control, and MPPI uses the learned dynamics for safe and agile planning.
+                Best of both worlds.<br>
+                More on this later.</p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <h2>References</h2>
+            <ul>
+                <li>Shirwatkar, S., et al. "PIP-Loco: A Proprioceptive Infinite Horizon Planning Framework for Legged
+                    Robot Locomotion." <em>ICRA 2025</em>.</li>
+                <li>Nilaksh, et al. "Safe Reinforcement Learning for Legged Locomotion." <em>ICRA 2024</em>.</li>
+            </ul>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
+
+            <p><em>Built with <a href="https://genesis-embodied-ai.github.io/">Genesis Physics Engine</a> and <a
+                        href="https://docs.pytorch.org/docs/stable/index.html">PyTorch</a></em></p>
+            <p><em>Special mentions : <a href="https://github.com/lupinjia/LeggedGym-Ex">LeggedGym-Ex</a> , <a
+                        href="https://github.com/leggedrobotics/rsl_rl">RSL-RL</a></em></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
