@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beetle : A Heavy-Duty Autonomous Testbed for Navigation Using ROS2 | Karan Nair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation Banner -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="../index.html" class="navbar-brand">
+                Karan Nair
+            </a>
+            <div class="navbar-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../projects.html" class="nav-link">Projects</a>
+                <a href="../Resume - Karan Nair.pdf" class="nav-link" target="_blank">Resume</a>
+
+                <div class="navbar-social">
+                    <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank"
+                        aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in"
+                        class="nav-social-icon" target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hamburger Icon (Visible on Mobile) -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div class="mobile-menu">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../projects.html" class="nav-link">Projects</a>
+            <a href="../Resume - Karan Nair.pdf" class="nav-link" target="_blank">Resume</a>
+
+            <div class="mobile-menu-social">
+                <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </a>
+                <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in" class="nav-social-icon"
+                    target="_blank" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container blog-post main-content">
+        <header class="blog-header">
+            <a href="../index.html" class="muted-link">&larr; Back to Home</a>
+            <h1 class="blog-title">Beetle : A Heavy-Duty Autonomous Testbed for Navigation Using ROS2</h1>
+            <p class="blog-meta">A robust, 4-wheeled skid-steer autonomous ground vehicle (AGV) designed as a
+                research testbed.</p>
+        </header>
+
+        <div class="blog-content">
+
+
+
+            <h2>Abstract</h2>
+            <p>Beetle is a robust, 4-wheeled skid-steer autonomous ground vehicle (AGV) designed as a research testbed
+                for the Automation and Robotics Club of BITS Pilani, Hyderabad Campus (ARC BPHC). Built to carry a 60kg
+                payload, it runs on ROS 2 Humble and has a bunch of sensors (LiDAR, RGB-D Camera, and Fisheye lens
+                tracking Camera) to execute SLAM and Path Planning.</p>
+
+            <img src="../blog-posts/beetle/assets/autocar.jpeg" alt="Beetle Robot"
+                style="width: 85%; max-width: 850px; display: block; margin: 2rem auto; border-radius: 12px;">
+
+            <h2>1. Introduction: The Need for a Platform</h2>
+            <p>Learning ROS (Robot Operating System) in simulation is valuable, but I wanted to make something that
+                could be used in the real world. At the time, the robotics club that I am a part of, need a testbed for
+                trying out SLAM and Path Planning algorithms on hardware. So I decided to build a robot that could serve
+                as a long-term resource for the club.</p>
+            <p>The result was Beetle: a 60kg capacity skid-steer bot designed to map and navigate our department
+                buildings.</p>
+
+            <h2>2. Hardware Architecture</h2>
+
+            <h3>2.1 The Chassis & Drive</h3>
+            <p>Beetle is a 4-wheeled skid-steer vehicle. It steers by varying the speed of the left and right wheel
+                pairs. This kinematic configuration allows for zero-radius turns, making it maneuverable in tight indoor
+                spaces.</p>
+            <ul>
+                <li><strong>Drive System:</strong> High-torque DC motors capable of hauling a 60kg payload.</li>
+                <li><strong>Kinematics:</strong> Differential drive controller (skid-steer logic).</li>
+            </ul>
+
+            <h3>2.2 The Compute Core</h3>
+            <p>Peforming SLAM and path planning in real-time needs a computer of course.</p>
+            <ul>
+                <li><strong>Computer:</strong> NVIDIA Jetson AGX Xavier.</li>
+                <li><strong>OS:</strong> Ubuntu 22.04 running ROS 2 Humble.</li>
+            </ul>
+
+            <h2>3. The Sensors</h2>
+            <p>Reliable navigation requires fusing data from multiple sources. Beetle uses a multi-modal sensor setup:
+            </p>
+            <p><strong>Why the T265?</strong> Wheel odometry on skid-steer robots is inaccurate due to wheel slippage.
+                The T265 solves this by providing Visual-Inertial Odometry that doesn't drift when the wheels slip,
+                serving as the reliable enough odom frame for the navigation stack.</p>
+
+            <pre><code>odom</code></pre>
+
+            <h2>4. Software Stack: ROS 2 Humble</h2>
+
+            <h3>4.1 Localization & Mapping (SLAM)</h3>
+            <p>I implemented two distinct SLAM pipelines:</p>
+            <ol>
+                <li><strong>LiDAR SLAM (SLAM Toolbox):</strong> Uses the YDLIDAR X2 to create 2D occupancy grids. This
+                    is lightweight and gave good results for standard indoor navigation.</li>
+                <li><strong>RGB-D SLAM (RTAB-Map):</strong> Uses the RealSense D435 to generate dense 3D maps.</li>
+            </ol>
+
+            <h3>4.2 Path Planning (Nav2)</h3>
+            <p>The Nav2 stack is what I used for this. It handles:</p>
+            <ul>
+                <li><strong>Global Planner:</strong> Computing the shortest path from point A to point B.</li>
+                <li><strong>Local Planner:</strong> Dynamic obstacle avoidance to follow the path while dodging people
+                    or objects.</li>
+            </ul>
+
+            <h2>5. Conclusion</h2>
+            <p>Well, Beetle worked pretty well. Now it serves as a test bed for my robotics club, allowing junior
+                members to mess around with ROS, SLAM and Path Planning.</p>
+        </div>
+
+        <div style="margin-top: 4rem; text-align: center; margin-bottom: 3rem;">
+            <a href="../index.html" class="muted-link">
+                &larr; Back to Home
+            </a>
+        </div>
+
+        <div class="blog-footer-social">
+            <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                </svg>
+            </a>
+            <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in" class="nav-social-icon"
+                target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

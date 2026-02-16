@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Projectile Interception | Karan Nair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation Banner -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="../index.html" class="navbar-brand">
+                Karan Nair
+            </a>
+            <div class="navbar-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../projects.html" class="nav-link">Projects</a>
+                <a href="../Resume - Karan Nair.pdf" class="nav-link" target="_blank">Resume</a>
+
+                <div class="navbar-social">
+                    <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank"
+                        aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in"
+                        class="nav-social-icon" target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hamburger Icon (Visible on Mobile) -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div class="mobile-menu">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../projects.html" class="nav-link">Projects</a>
+            <a href="../Resume - Karan Nair.pdf" class="nav-link" target="_blank">Resume</a>
+
+            <div class="mobile-menu-social">
+                <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </a>
+                <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in" class="nav-social-icon"
+                    target="_blank" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container blog-post main-content">
+        <header class="blog-header">
+            <a href="../index.html" class="muted-link">&larr; Back to Home</a>
+            <h1 class="blog-title">Real-Time Projectile Interception</h1>
+            <p class="blog-meta">How I enabled a planar robotic arm to intercept 3D ballistic throws using Fixed-Time
+                MPC.</p>
+        </header>
+
+        <div class="blog-content">
+            <p style="margin-bottom: 0.5rem; color: #aaa;">The full implementation is open-source:</p>
+
+            <a href="https://github.com/aceofspades07/3dof-mpc-interceptor" class="github-card" target="_blank"
+                style="margin: 0 0 3rem 0;">
+                <div class="github-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </div>
+                <div class="github-text">
+                    <span class="github-repo">aceofspades07/3dof-mpc-interceptor</span>
+                    <span class="github-desc">Source code for the simulation and MPC controller.</span>
+                </div>
+            </a>
+            <img src="../blog-posts/interceptor/assets/interceptor6.webp" alt="The Interceptor"
+                style="width: 85%; max-width: 850px; display: block; margin: 0 auto 2rem auto; border-radius: 12px;">
+
+            <h2>The TL;DR</h2>
+            <p>I built a system where a 3-DOF planar robot arm — a prismatic slider with two revolute joints —
+                intercepts a ball thrown through 3D space, in real time. The robot only operates in a 2D plane, but the
+                ball is a full 3D ballistic projectile. The trick: analytically compute <em>when</em> the ball will
+                cross the robot's operational plane, lock that as a hard time horizon, and let a receding-horizon MPC
+                figure out <em>how</em> to get the end-effector there.</p>
+
+            <p>The result: sub-centimetre interception accuracy at 20 Hz re-solve rates, with warm-started IPOPT
+                converging in under 15 ms per cycle. The entire pipeline — trajectory estimation, MPC solve, motor
+                command interpolation — runs inside a PyBullet physics loop at 240 Hz.</p>
+
+            <hr>
+
+            <h2>Why This Matters</h2>
+            <p>Catching or intercepting fast-moving objects is one of those problems that <em>sounds</em>
+                straightforward until you actually try it. The core tension: you need to plan a dynamically feasible
+                trajectory for a multi-joint arm, but your planning horizon is dictated by the projectile — and that
+                horizon is shrinking every millisecond.</p>
+            <p>Most prior work tackles this with high-DOF arms and full 3D workspaces. I wanted to explore a leaner
+                setup: a <strong>planar PRR arm</strong> (Prismatic–Revolute–Revolute) that only moves in the XZ plane,
+                intercepting a ball that travels through full 3D space. This constraint makes the problem harder in some
+                ways (reduced workspace) and more tractable in others (the interception becomes a 2D terminal
+                constraint).</p>
+            <p>The initial approach — treating interception time \(T^*\) as a free optimisation variable — worked for 2D
+                in-plane throws. But the moment I introduced off-plane 3D trajectories, the solver started choking. That
+                failure mode is what led to the key architectural insight of this project.</p>
+
+            <hr>
+
+            <h2>The Robot: A PRR Planar Arm on Rails</h2>
+            <p>The manipulator is a 3-DOF planar arm defined in URDF and simulated in PyBullet:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Joint</th>
+                        <th>Type</th>
+                        <th>Range</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Slider</strong></td>
+                        <td>Prismatic</td>
+                        <td>\([-2, 2]\) m</td>
+                        <td>Gross X-axis repositioning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shoulder</strong></td>
+                        <td>Revolute</td>
+                        <td>\([0.05, 2.0]\) rad</td>
+                        <td>Arm elevation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Elbow</strong></td>
+                        <td>Revolute</td>
+                        <td>\([-3.09, -0.05]\) rad</td>
+                        <td>Reach fine-tuning</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Both links are 1.0 m, giving a max reach of 2.0 m from the shoulder. The slider extends the effective X
+                workspace to roughly \([-4, 4]\) m. The entire URDF is spawned rotated \(\pi/2\) about the world X-axis
+                so its native XY plane maps to the world XZ plane.</p>
+
+            <!-- [Insert Image: URDF arm diagram showing the PRR kinematic chain in the XZ plane] -->
+
+            <p>The forward kinematics are clean:</p>
+            <p>\[x_{ee} = q_0 + l_1 \cos(q_1) + l_2 \cos(q_1 + q_2)\]</p>
+            <p>\[z_{ee} = z_{base} + l_1 \sin(q_1) + l_2 \sin(q_1 + q_2)\]</p>
+            <p>where \(q_0\) is the slider position and \(z_{base} = 0.06\) m.</p>
+
+            <hr>
+
+            <h2>From Time-Optimal to Fixed-Time: Why \(T^*\) Broke Everything</h2>
+            <p>My first MPC formulation treated the interception time \(T\) as a decision variable. The cost was:</p>
+            <p>\[J = 10T + 0.001 \| U \|^2\]</p>
+            <p>This worked well for <strong>in-plane throws</strong> (ball moving in XZ only). The solver would find the
+                fastest feasible interception. But when I moved to 3D throws — ball originating at, say, \((4, 3, 1.5)\)
+                with velocity \((-4, -3, 5)\) — things fell apart.</p>
+            <p><strong>The failure mode:</strong> with \(T\) free, the solver had to simultaneously satisfy the terminal
+                FK constraint <em>and</em> find a \(T\) where the ball actually intersects the arm's workspace. For
+                off-plane balls, this coupling created over-constrained configurations. The ball's predicted position at
+                time \(T\) is itself a function of \(T\) (ballistic trajectory), and the arm's reachable set at time
+                \(T\) is <em>also</em> a function of \(T\) (through the dynamics). IPOPT would hit its iteration limit
+                and return infeasible.</p>
+            <p><strong>The fix was almost embarrassingly simple.</strong> The ball crosses the robot's XZ plane (\(Y =
+                0\)) at a deterministic time:</p>
+            <p>\[T_{cross} = \frac{-y_0}{v_y}\]</p>
+            <p>This is pure kinematics — no optimisation needed. Once I pulled \(T\) out of the decision variables and
+                fixed the horizon to \(T_{cross}\), the problem became dramatically easier. The MPC now only asks:
+                <em>"Given exactly this much time, what's the minimum-effort trajectory to reach this point?"</em></p>
+
+            <hr>
+
+            <h2>The MPC Formulation</h2>
+            <p>The solver is built once as a CasADi <code>Opti</code> problem and re-parameterised every cycle. Here's
+                the structure:</p>
+            <p><strong>Decision variables:</strong></p>
+            <ul>
+                <li>\(X \in \mathbb{R}^{6 \times (N+1)}\) — state trajectory \([q; \dot{q}]\)</li>
+                <li>\(U \in \mathbb{R}^{3 \times N}\) — joint accelerations (controls)</li>
+            </ul>
+
+            <p><strong>Cost function:</strong></p>
+            <p>\[J = \sum_{k=0}^{N-1} U_k^T W U_k + 10 \| \dot{q}_N \|^2\]</p>
+            <p>where \(W = \text{diag}(0.01, 1.0, 1.0)\). The asymmetric weighting is deliberate — the slider is cheap
+                to accelerate (it's on rails), so the cost structure encourages the prismatic joint to absorb gross
+                repositioning while the revolute joints handle fine alignment. The terminal velocity penalty ensures a
+                smooth arrival.</p>
+
+            <p><strong>Dynamics</strong> — Euler-discretised double integrator:</p>
+            <p>\[q_{k+1} = q_k + \dot{q}_k \cdot dt + \tfrac{1}{2} u_k \cdot dt^2\]</p>
+            <p>\[\dot{q}_{k+1} = \dot{q}_k + u_k \cdot dt\]</p>
+            <p>where \(dt = T_{remain} / N\) and \(N = 20\).</p>
+
+            <p><strong>Terminal constraint</strong> — hard FK equality:</p>
+            <p>\[\text{FK}(q_N) = \begin{bmatrix} x_{ball} \\ z_{ball} \end{bmatrix}_{t = T_{cross}}\]</p>
+
+            <p><strong>Box constraints</strong> at every node:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Slider</th>
+                        <th>Shoulder</th>
+                        <th>Elbow</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Position</strong></td>
+                        <td>\([-2, 2]\) m</td>
+                        <td>\([0.05, 2.0]\) rad</td>
+                        <td>\([-3.09, -0.05]\) rad</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Velocity</strong></td>
+                        <td>\(\pm 2.0\) m/s</td>
+                        <td>\(\pm 5.0\) rad/s</td>
+                        <td>\(\pm 5.0\) rad/s</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Acceleration</strong></td>
+                        <td>\(\pm 4.0\) m/s²</td>
+                        <td>\(\pm 10.0\) rad/s²</td>
+                        <td>\(\pm 10.0\) rad/s²</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>A note on the elbow bounds: the constraint \(q_2 \in [-3.09, -0.05]\) keeps the arm in elbow-up
+                configuration and prevents full extension (\(q_2 \to 0\)), which would create a kinematic singularity
+                where the Jacobian loses rank and the solver hits zero-gradient regions.</p>
+
+            <hr>
+
+            <h2>Trajectory Estimation and the Observation Window</h2>
+            <p>Before the MPC fires, we need to know <em>where</em> the ball is going. I collect ~0.15 s of noisy ball
+                observations (about 36 samples at 240 Hz) and fit three independent models via least-squares:</p>
+            <ul>
+                <li><strong>X:</strong> linear — \(x(t) = x_0 + v_x t\)</li>
+                <li><strong>Y:</strong> linear — \(y(t) = y_0 + v_y t\)</li>
+                <li><strong>Z:</strong> quadratic — \(z(t) = z_0 + v_z t + \tfrac{1}{2} a t^2\)</li>
+            </ul>
+            <p>The Z-axis gets a quadratic because gravity acts vertically. Gaussian noise (\(\sigma = 5\) mm) is
+                injected into observations to stress-test robustness. Five samples is the hard minimum before the
+                estimator returns anything.</p>
+            <p>From the fit, \(T_{cross}\) drops out immediately, and the ball's predicted \([x, z]\) at crossing gives
+                us the terminal constraint target.</p>
+
+            <hr>
+
+            <h2>Receding Horizon: Closing the Loop</h2>
+            <p>A single MPC solve at \(t = 0\) and open-loop execution is fragile. Estimation errors compound, the ball
+                doesn't follow the model perfectly (PyBullet has its own integrator), and any perturbation is
+                unrecoverable.</p>
+            <p>The receding horizon architecture re-solves the MPC at <strong>20 Hz</strong> (every 50 ms). Each cycle:
+            </p>
+            <ol>
+                <li><strong>Read live robot state</strong> — joint positions and velocities from PyBullet.</li>
+                <li><strong>Read live ball state</strong> — recompute \(T_{cross}\) from the ball's <em>current</em>
+                    position and velocity, not the initial estimate.</li>
+                <li><strong>Shrink the horizon</strong> — \(dt = T_{remain} / N\) naturally decreases as the deadline
+                    approaches.</li>
+                <li><strong>Warm-start IPOPT</strong> with the previous solution — this is critical for convergence
+                    speed.</li>
+                <li><strong>Interpolate the plan</strong> — between MPC solves, motor commands are linearly interpolated
+                    across the \(N + 1\) collocation nodes.</li>
+            </ol>
+            <p>The warm-starting deserves emphasis. A cold-start IPOPT solve on this problem can take 50+ ms. With
+                warm-starting, most re-solves converge in under 15 ms, well within the 50 ms budget.</p>
+            <p><strong>Failsafe:</strong> when \(T_{remain} < 0.1\) s, re-solving is pointless — there isn't enough time
+                    for IPOPT to converge <em>and</em> for the motors to respond. The solver freezes, and the last
+                    computed trajectory is played out open-loop to the end.</p>
+
+            <pre><code class="language-python">if T_remain_now < failsafe_thres:
+    solver_frozen = True
+    print(f"  Failsafe: T_remain={T_remain_now:.3f}s -- freezing solver")
+</code></pre>
+
+            <hr>
+
+            <h2>Results</h2>
+            <p>With the fixed-time formulation and RHC loop, the system reliably intercepts 3D throws across a wide
+                range of initial conditions:</p>
+            <ul>
+                <li><strong>Ball spawn:</strong> \(x \in [3.5, 5.0]\), \(y \in [2.0, 4.0]\) (off-plane), \(z \in [1.0,
+                    2.0]\) m</li>
+                <li><strong>Ball velocity:</strong> \(v_x \in [-5, -3]\), \(v_y \in [-4, -2]\), \(v_z \in [3, 6]\) m/s
+                </li>
+                <li><strong>Typical \(T_{cross}\):</strong> 0.5 – 2.0 s</li>
+                <li><strong>Miss distance:</strong> consistently under 10 mm for feasible throws</li>
+                <li><strong>Solver calls per attempt:</strong> 8 – 25 (depending on \(T_{cross}\))</li>
+            </ul>
+
+            <!-- [Insert Image: Screenshot of PyBullet simulation showing the arm intercepting the ball at the Y=0 plane] -->
+
+            <p>The biggest failure mode is workspace limits — if the ball crosses \(Y = 0\) at a point outside the arm's
+                reachable envelope, no amount of optimisation will help. The system correctly detects and skips these
+                cases.</p>
+
+            <hr>
+
+            <h2>What's Next</h2>
+            <p>A few directions I'm actively thinking about:</p>
+            <ul>
+                <li><strong>Actual catching</strong> — closing a gripper or using a net/cup end-effector, which
+                    introduces grasp timing constraints.</li>
+                <li><strong>Perception pipeline</strong> — replacing PyBullet's ground-truth ball state with a
+                    vision-based tracker (stereo camera + Kalman filter).</li>
+                <li><strong>Sim-to-real transfer</strong> — the MPC formulation is hardware-agnostic, but motor delays
+                    and communication latency will need compensation.</li>
+                <li><strong>Higher-DOF arms</strong> — scaling this to a 6-DOF manipulator operating in full 3D
+                    workspace.</li>
+            </ul>
+
+            <hr>
+
+            <h2>References</h2>
+            <ol>
+                <li>T. Gold <em>et al.</em>, "Catching Objects with a Robot Arm using Model Predictive Control," 2022
+                    American Control Conference (ACC). <a href="https://ieeexplore.ieee.org/document/9867380"
+                        target="_blank">Link</a></li>
+                <li>J. A. E. Andersson <em>et al.</em>, "CasADi: a software framework for nonlinear optimization and
+                    optimal control," <em>Mathematical Programming Computation</em>, vol. 11, pp. 1–36, 2019.</li>
+            </ol>
+
+            <hr>
+
+            <p style="text-align: center; color: #777; font-style: italic;">Built with <a
+                    href="https://web.casadi.org/">CasADi</a> + <a href="https://coin-or.github.io/Ipopt/">IPOPT</a> for
+                optimisation, <a href="https://pybullet.org/">PyBullet</a> for physics simulation, and <a
+                    href="https://numpy.org/">NumPy</a> for everything in between.</p>
+        </div>
+
+        <div style="margin-top: 4rem; text-align: center; margin-bottom: 3rem;">
+            <a href="../index.html" class="muted-link">
+                &larr; Back to Home
+            </a>
+        </div>
+
+        <div class="blog-footer-social">
+            <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                </svg>
+            </a>
+            <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in" class="nav-social-icon"
+                target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
