@@ -176,10 +176,11 @@
             <ul>
                 <li>The <strong>Actor</strong> (the policy that actually runs on the robot) only sees what a real robot
                     would see: joint positions, joint velocities, IMU data, and commanded velocities. That's a
-                    45-dimensional vector - I will call these the 'blind' observations.</li>
+                    45-dimensional vector - I will call these the <strong>blind observations</strong>.</li>
                 <li>The <strong>Critic</strong> (the value function, only used during training) gets a 250-dimensional
-                    privileged state vector, filled with all the simulator data - I will call these the 'privileged'
-                    observations.</li>
+                    privileged state vector, filled with all the simulator data - I will call these the
+                    <strong>privileged observations</strong>.
+                </li>
             </ul>
             <p>The critic basically has the answer key. It knows the true velocity, the friction, the terrain heights,
                 everything. This makes value estimation way more accurate, which speeds up learning — but the actor
@@ -284,7 +285,7 @@
                         <td>Predict immediate reward</td>
                     </tr>
                     <tr>
-                        <td>Policy</td>
+                        <td>Cloned Policy</td>
                         <td>obs → action</td>
                         <td>Mimic the actor's behaviour to predict actions</td>
                     </tr>
@@ -296,7 +297,7 @@
                 </tbody>
             </table>
 
-            <p>At inference time, the dreamer <strong>'rooms out'</strong> 5 steps into the future:</p>
+            <p>At inference time, the dreamer 'rolls out' 5 steps into the future:</p>
 
             <pre><code>current_obs → policy → action → dynamics → next_obs
 next_obs → policy → action → dynamics → next_next_obs
