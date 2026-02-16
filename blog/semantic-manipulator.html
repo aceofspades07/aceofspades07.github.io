@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Semantic Manipulator | Karan Nair</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation Banner -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="../index.html" class="navbar-brand">
+                Karan Nair
+            </a>
+            <div class="navbar-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../projects.html" class="nav-link">Projects</a>
+                <a href="../Resume - Karan Nair.pdf" class="nav-link" target="_blank">Resume</a>
+
+                <div class="navbar-social">
+                    <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank"
+                        aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                    <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in"
+                        class="nav-social-icon" target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hamburger Icon (Visible on Mobile) -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div class="mobile-menu">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../projects.html" class="nav-link">Projects</a>
+            <a href="../Resume - Karan Nair.pdf" class="nav-link" target="_blank">Resume</a>
+
+            <div class="mobile-menu-social">
+                <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </a>
+                <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in" class="nav-social-icon"
+                    target="_blank" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container blog-post main-content">
+        <header class="blog-header">
+            <a href="../index.html" class="muted-link">&larr; Back to Home</a>
+            <h1 class="blog-title">The Semantic Manipulator</h1>
+            <p class="blog-meta">How I enabled a robotic arm to move colored blocks using conversational commands.</p>
+        </header>
+
+        <div class="blog-content">
+            <p style="margin-bottom: 0.5rem; color: #aaa;">The full implementation is open-source:</p>
+
+            <a href="https://github.com/aceofspades07/semantic-manipulator" class="github-card" target="_blank"
+                style="margin: 0 0 3rem 0;">
+                <div class="github-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                </div>
+                <div class="github-text">
+                    <span class="github-repo">aceofspades07/semantic-manipulator</span>
+                    <span class="github-desc">Source code for the Semantic Manipulator control stack.</span>
+                </div>
+            </a>
+            <img src="../blog-posts/semantic-manipulator/assets/workspace.jpg" alt="The setup"
+                style="width: 85%; max-width: 850px; display: block; margin: 0 auto 2rem auto; border-radius: 12px;">
+
+            <h2>The TL;DR</h2>
+            <p>Most robotic manipulation systems assume the operator knows joint-space kinematics, coordinate
+                transforms, and pendant programming. The goal was the opposite: walk up, say <em>"pick up the red
+                    block,"</em> and watch the arm do it.</p>
+
+            <p><strong>The Semantic Manipulator</strong> bridges conversational intent and physical manipulation by
+                fusing three things: a monocular vision pipeline that localizes colored blocks in the robot's coordinate
+                frame, a lightweight text classifier that parses free-form commands into deterministic action
+                primitives, and a finite state machine that grounds every action against physical reality before the
+                motors move.</p>
+
+            <p>I built this system with two teammates, and it runs in real-time on a single machine, uses no cloud
+                APIs for inference, and the arm hasn't dropped a block it wasn't supposed to yet.</p>
+
+
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <iframe width="100%" height="400" src="https://www.youtube.com/embed/FhsI4L-pOcw"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen style="border-radius: 12px;"></iframe>
+            </div>
+
+            <hr>
+
+            <h2>Why This Matters</h2>
+            <p>Programming a robotic arm to pick up a specific object in an unstructured scene typically requires
+                solving three problems simultaneously:</p>
+            <ol>
+                <li><strong>Perception</strong> -- Where is the object, and which one is it?</li>
+                <li><strong>Semantic understanding</strong> -- What does the user actually want?</li>
+                <li><strong>Safe execution</strong> -- Is the requested action physically valid right now?</li>
+            </ol>
+            <p>Industrial solutions tend to hardcode the first, ignore the second, and gate the third behind interlocks.
+                Research demos often showcase impressive language-conditioned policies but require GPU clusters,
+                large-scale training data, or sim-to-real transfer.</p>
+            <p>We wanted something in between: a system that genuinely understands free-form language, runs locally, and
+                <strong>cannot hallucinate its way into unsafe motor commands</strong>. The key design constraint was
+                that natural language should <em>inform</em> the action, but never <em>directly control</em> the
+                actuators.
+            </p>
+
+            <hr>
+
+            <h2>System Architecture</h2>
+            <p>The pipeline follows a strict <strong>Sense-Think-Act</strong> loop. Each node is independently testable,
+                and the interfaces between them are plain Python dictionaries.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Module</th>
+                        <th>Responsibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sense</strong></td>
+                        <td><code>detect_jenga.py</code>, <code>colour_coordinates.py</code></td>
+                        <td>HSV segmentation, pinhole projection, homography transform</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Think</strong></td>
+                        <td><code>text_classifier.py</code>, <code>fsm_controller.py</code></td>
+                        <td>Intent classification, state validation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Act</strong></td>
+                        <td><code>roarm_m2/actions/</code></td>
+                        <td>Cartesian motion sequences via JSON-over-HTTP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interface</strong></td>
+                        <td><code>homepage.py</code></td>
+                        <td>Gradio chat console, teleop controls</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h2>Vision Pipeline: From Pixels to Robot Coordinates</h2>
+            <p>The perception system has one job: produce a dictionary mapping <strong>color names to 3D coordinates in
+                    the robot's base frame</strong>. Everything downstream consumes this dictionary.</p>
+
+            <pre><code class="language-python"># Output format of the vision pipeline
+{
+    "red":    [(x1, y1, z1), (x2, y2, z2)],
+    "blue":   [(x3, y3, z3)],
+    "green":  [(x4, y4, z4), (x5, y5, z5), (x6, y6, z6)]
+}
+</code></pre>
+
+            <h3>Color Segmentation</h3>
+            <p>Blocks are segmented in HSV space using hand-tuned ranges for six colors. The ranges were chosen to be
+                tight
+                enough to avoid cross-talk (particularly the red-orange-yellow boundary), while still being robust under
+                the overhead lighting.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Color</th>
+                        <th>Hue Range(s)</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Red</td>
+                        <td>[0, 5] and [160, 180]</td>
+                        <td>Wraps around the hue cylinder</td>
+                    </tr>
+                    <tr>
+                        <td>Orange</td>
+                        <td>[6, 20]</td>
+                        <td>Narrow band between red and yellow</td>
+                    </tr>
+                    <tr>
+                        <td>Yellow</td>
+                        <td>[21, 35]</td>
+                        <td>Starts at 21 to avoid orange bleed</td>
+                    </tr>
+                    <tr>
+                        <td>Green</td>
+                        <td>[40, 80]</td>
+                        <td>Widest range; most stable</td>
+                    </tr>
+                    <tr>
+                        <td>Blue</td>
+                        <td>[70, 130]</td>
+                        <td>Overlaps slightly with green at boundary</td>
+                    </tr>
+                    <tr>
+                        <td>Pink</td>
+                        <td>[140, 165]</td>
+                        <td>High-value, low-saturation distinguishes from red</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>After thresholding, a morphological close-then-open (5x5 kernel) is applied to fill small holes and
+                remove
+                speckle noise. Contours below 500 px area or with solidity < 0.6 are rejected.</p>
+
+                    <h3>Handling Merged Contours</h3>
+                    <p>Here's a problem that textbooks skip: when two same-colored blocks touch, OpenCV returns a single
+                        merged contour. Since Jenga blocks have known physical dimensions (7.0 x 2.5 x 1.5 cm),
+                        oversized contours are detected and split.</p>
+                    <p>The idea is simple. For a single block, the observed aspect ratio should match:</p>
+                    <p>\[ r_{\text{expected}} = \frac{L_{\text{long}}}{L_{\text{short}}} = \frac{7.0}{2.5} = 2.8 \]</p>
+                    <p>If the observed ratio significantly exceeds this (beyond a 30% tolerance), I infer multiple
+                        blocks along the major axis and subdivide accordingly:</p>
+                    <p>\[ n_{\text{major}} = \text{round}\left(\frac{r_{\text{observed}}}{r_{\text{expected}}}\right) \]
+                    </p>
+                    <p>The subdivided rectangles inherit the parent's orientation and are spaced uniformly along the
+                        major axis. This handles the common case of two or three blocks lined up end-to-end.</p>
+
+                    <h3>Monocular Depth via Pinhole Model</h3>
+                    <p>The Intel RealSense D435 provides calibrated intrinsics, but the depth stream is not used.
+                        Instead, since the block dimensions are known, distance is estimated from the camera using the
+                        classic pinhole relation:</p>
+                    <p>\[ D = \frac{L_{\text{real}} \cdot f_x}{L_{\text{pixel}}} \]</p>
+                    <p>where \(L_{\text{real}} = 7.0\) cm (longest block side), \(f_x\) is the focal length in pixels,
+                        and \(L_{\text{pixel}}\) is the detected longest side in pixels.</p>
+                    <p>Once depth \(D\) is obtained for a block at pixel \((u, v)\), back-projection to camera-frame 3D
+                        coordinates is straightforward:</p>
+                    <p>\[ X = \frac{(u - c_x) \cdot D}{f_x}, \quad Y = \frac{(v - c_y) \cdot D}{f_y}, \quad Z = D \]</p>
+                    <p><strong>Why not use the depth stream?</strong> The D435's stereo depth is noisy at short range (<
+                            30 cm) and struggles with small, textureless objects like colored blocks. The monocular
+                            approach with known object dimensions turned out to be more reliable for our setup.</p>
+
+                            <h3>Camera-to-Robot Calibration</h3>
+                            <p>The camera sees pixels; the arm thinks in millimeters relative to its base. Bridging
+                                these frames is the <strong>calibration step</strong>, and it's the single most
+                                important part of the system.</p>
+                            <p><strong>Procedure:</strong></p>
+                            <ol>
+                                <li>Place four ArUco markers (4x4 dictionary, IDs 0-3) at known positions within the
+                                    workspace.</li>
+                                <li>Physically move the arm's end-effector to each marker center and record the arm's
+                                    reported \((x, y)\) coordinates.</li>
+                                <li>Move the arm out of frame. Capture a camera image and detect the four marker centers
+                                    in pixel space.</li>
+                                <li>Compute a <strong>homography</strong> \(\mathbf{H}\) mapping pixel coordinates to
+                                    robot coordinates.</li>
+                            </ol>
+                            <p>The transform is a standard \(3 \times 3\) projective mapping computed via
+                                <code>cv2.getPerspectiveTransform</code>:
+                            </p>
+                            <p>\[ \begin{bmatrix} x_r \\ y_r \\ 1 \end{bmatrix} \sim \mathbf{H} \begin{bmatrix} u \\ v
+                                \\ 1 \end{bmatrix} \]</p>
+                            <p>The \(z\)-coordinate in the robot frame is computed separately since the camera is
+                                mounted overhead at a known height (~78.5 cm). Combined with the monocular depth
+                                estimate and the known table and block heights:</p>
+                            <p>\[ z_{\text{robot}} = z_{\text{camera}} - D + z_{\text{table}} +
+                                \frac{h_{\text{block}}}{2} \]</p>
+                            <p>The homography matrix is saved as a <code>.npy</code> file and loaded at runtime.
+                                <strong>Every time the camera, arm, or workspace surface moves, recalibration is
+                                    required.</strong> There's no way around this with a rigid transform approach.
+                            </p>
+
+                            <img src="../blog-posts/semantic-manipulator/assets/calibration_setup.jpg"
+                                alt="Calibration setup"
+                                style="width: 60%; max-width: 600px; display: block; margin: 2rem auto; border-radius: 12px;">
+
+                            <hr>
+
+                            <h2>Semantic Parsing: From "Grab the Red One" to
+                                <code>{"action": "pick", "color": "red"}</code>
+                            </h2>
+                            <p>The system needs to convert free-form text like <em>"grab the red one"</em> or <em>"put
+                                    it
+                                    down"</em> into a structured command. There are two ways to do this: call an LLM, or
+                                train a small classifier. We decided to go with the latter.</p>
+
+                            <h3>Why Not an LLM?</h3>
+                            <p>Latency. An API call to a cloud LLM adds 500ms-2s of round-trip time, every single
+                                command. For a reactive manipulation system, that's unacceptable. More importantly, the
+                                action space is tiny -- there are exactly <strong>four output classes</strong>:
+                                <code>pick</code>, <code>place</code>, <code>drop</code>, and <code>none</code>. This is
+                                a classification problem, not a generation problem.
+                            </p>
+
+                            <h3>The Classifier</h3>
+                            <p>The system uses <strong>model2vec</strong> (<code>potion-base-8M</code>), a static
+                                embedding model
+                                that converts sentences to 256-dim vectors in under a millisecond. On top of that sits a
+                                simple <strong>Logistic Regression</strong> classifier trained on ~80 hand-written
+                                examples.</p>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Component</th>
+                                        <th>Choice</th>
+                                        <th>Rationale</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Embedding</td>
+                                        <td>model2vec (8M params)</td>
+                                        <td>Sub-millisecond inference, no GPU required</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Classifier</td>
+                                        <td>Logistic Regression</td>
+                                        <td>Four classes, <100 training samples -- anything more is overkill</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Color extraction</td>
+                                        <td>Regex</td>
+                                        <td>Deterministic, zero ambiguity</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p>The training data is intentionally diverse in phrasing:</p>
+
+                            <pre><code class="language-python"># Subset of training examples
+("pick the red block", "pick"),
+("grab the blue cube", "pick"),
+("fetch the orange block", "pick"),
+("place it here", "place"),
+("put it down", "place"),
+("drop it", "drop"),
+("let go", "drop"),
+("do a backflip", "none"),    # Out-of-distribution
+("what is your battery level", "none"),
+</code></pre>
+
+                            <p>Color is extracted separately via regex after classification -- it's not part of the
+                                classifier's job. This decoupling means the classifier generalizes to any color without
+                                needing color-specific training data.</p>
+                            <p>The classifier outputs a confidence score. In practice, anything above ~70% is reliable.
+                                The <code>none</code> class acts as a catch-all for out-of-distribution inputs --
+                                queries the system can't or shouldn't act on.</p>
+
+                            <hr>
+
+                            <h2>The Grounding Layer: A Finite State Machine</h2>
+                            <p>Here's the trick. Even a perfect classifier can produce dangerous commands if the system
+                                doesn't track its own state. Consider:</p>
+                            <ul>
+                                <li>User says <em>"drop it"</em> when the gripper is empty -- the arm would execute a
+                                    drop sequence on nothing.</li>
+                                <li>User says <em>"pick the red block"</em> when already holding a block -- the arm
+                                    would try to grab a second block with a full gripper.</li>
+                            </ul>
+                            <p>The <strong>FSM controller</strong> prevents this. It maintains exactly two states:</p>
+
+                            <img src="../blog-posts/semantic-manipulator/assets/fsm_cycle.png"
+                                alt="The Finite State Machine"
+                                style="width: 50%; max-width: 500px; margin: 2rem auto; display: block;">
+
+                            <p>Every action request passes through <code>fsm_controller(action, current_state)</code>
+                                before any motor command is issued. Invalid transitions return a <code>no-op</code> and
+                                the system responds with a human-readable rejection.</p>
+
+                            <pre><code class="language-python">def fsm_controller(action_name, current_state):
+    state = _normalize_state(current_state)
+
+    if action == "pick":
+        if state == "doesnot_have_block":
+            result = pick()
+            return "have_block", f"pick: {result}"
+        else:
+            return state, "no-op: already have block"
+
+    if action == "drop":
+        if state == "have_block":
+            result = drop()
+            return "doesnot_have_block", f"drop: {result}"
+        else:
+            return state, "no-op: no block to drop"
+</code></pre>
+
+                            <p>This is the layer where LLM "hallucinations" (or in this case, classifier
+                                misclassifications) are caught. <strong>The FSM is the only component that can authorize
+                                    motor movement.</strong> The classifier <em>suggests</em> - the FSM
+                                <em>decides</em>.
+                            </p>
+
+                            <hr>
+
+                            <h2>Motion Execution</h2>
+                            <p>The arm is controlled over WiFi via JSON commands sent as HTTP GET requests. The
+                                controller class wraps this into a clean Python API.</p>
+
+                            <h3>Motion Completion Detection</h3>
+                            <p>One non-obvious engineering challenge: <strong>how do you know when the arm has finished
+                                    moving?</strong> The arm's firmware acknowledges commands immediately, but the
+                                physical motion takes time. Issuing the next command too early causes jerky,
+                                unpredictable motion.</p>
+                            <p>I solved this with a polling-based stability detector. The system queries the arm's
+                                joint feedback at ~5 Hz and tracks the maximum joint-angle delta between consecutive
+                                readings. If the delta stays below a threshold (\(\epsilon = 0.02\) rad) for three
+                                consecutive polls, the motion is considered complete.</p>
+
+                            <pre><code class="language-python">def wait_for_motion_completion(self, check_interval=0.2, stability_required=3):
+    stable_count = 0
+    while True:
+        current_values = self.get_feedback()
+        max_delta = max(abs(v - last[k]) for k, v in current_values.items())
+        
+        if max_delta < self.motion_tolerance:
+            stable_count += 1
+        else:
+            stable_count = 0
+
+        if stable_count >= stability_required:
+            break
+</code></pre>
+
+                            <p>This approach is hardware-agnostic and avoids relying on firmware-specific "motion
+                                complete" flags.</p>
+
+                            <h3>Pick Sequence</h3>
+                            <p>A pick action executes five steps in sequence, each blocking until completion:</p>
+                            <ol>
+                                <li><strong>Open gripper</strong> -- Set joint 4 to open angle</li>
+                                <li><strong>Approach</strong> -- Move to \((x, y, z + 10)\) above the target</li>
+                                <li><strong>Descend</strong> -- Lower to grasp height \(z - h_{\text{block}}/2\)</li>
+                                <li><strong>Close gripper</strong> -- Grasp the block</li>
+                                <li><strong>Return home</strong> -- Lift to a safe home position while holding the block
+                                </li>
+                            </ol>
+                            <p>Place and drop follow analogous sequences. All coordinates are in the robot's base frame,
+                                transformed from camera pixels via the calibration homography.</p>
+
+                            <hr>
+
+                            <h2>User Interface</h2>
+                            <p>The interface is a Gradio web app with two modes:</p>
+                            <ul>
+                                <li><strong>Chat mode</strong> -- Type natural language commands. The system classifies,
+                                    validates, detects objects, and executes.</li>
+                                <li><strong>Teleop mode</strong> -- Direct keyboard control (W/A/S/D for XY, U/J for Z,
+                                    O for drop). Useful for manual positioning and debugging.</li>
+                            </ul>
+                            <p>An inference panel shows the classifier's output in real-time: detected action, color,
+                                confidence, and execution status.</p>
+
+                            <img src="../blog-posts/semantic-manipulator/assets/interface.png"
+                                alt="Gradio Chat Interface"
+                                style="width: 60%; max-width: 600px; display: block; margin: 2rem auto; border-radius: 12px;">
+
+                            <hr>
+
+                            <h2>Results</h2>
+                            <p>The system reliably handles the core manipulation loop: <strong>detect, pick, place, and
+                                    drop</strong> colored blocks via natural language.</p>
+                            <p><strong>What works well:</strong></p>
+                            <ul>
+                                <li><strong>Color segmentation</strong> is robust under consistent overhead lighting.
+                                    Six colors are distinguishable without cross-contamination.</li>
+                                <li><strong>Calibration</strong> holds steady as long as nothing in the physical setup
+                                    moves. Reprojection accuracy is within ~5 mm.</li>
+                                <li><strong>The FSM grounding layer</strong> has successfully prevented every invalid
+                                    action during testing. No unsafe motor commands have been issued.</li>
+                                <li><strong>Classifier latency</strong> is negligible -- sub-5ms per command including
+                                    embedding and classification.</li>
+                            </ul>
+
+                            <p><strong>What doesn't work well (yet):</strong></p>
+                            <ul>
+                                <li><strong>Lighting sensitivity.</strong> The HSV thresholds are tuned for a specific
+                                    lighting setup. A learned color model would generalize better.</li>
+                                <li><strong>Single-block grasping only.</strong> The system picks one block at a time
+                                    and has no concept of task planning or sequencing (e.g., <em>"sort all green blocks
+                                        to the left"</em>).</li>
+                                <li><strong>No occlusion handling.</strong> If blocks overlap, the segmentation breaks.
+                                    Depth-based instance segmentation would help here.</li>
+                                <li><strong>Calibration is manual.</strong> An automatic extrinsic calibration routine
+                                    (e.g., eye-in-hand with known checkerboard) would reduce setup friction
+                                    significantly.</li>
+                            </ul>
+
+                            <hr>
+
+                            <h2>Future Work</h2>
+                            <ul>
+                                <li><strong>Task-level planning.</strong> Integrate an LLM for multi-step plan
+                                    generation (<em>"sort by color"</em> -> sequence of pick-place primitives), while
+                                    keeping the FSM as the execution gatekeeper.</li>
+                                <li><strong>Learned visual features.</strong> Replace hand-tuned HSV ranges with a
+                                    lightweight object detection model for better generalization.</li>
+                                <li><strong>6-DOF grasping.</strong> The current system only reasons about \((x, y,
+                                    z)\). Adding orientation-aware grasping would handle arbitrarily placed objects.
+                                </li>
+                                <li><strong>Closed-loop visual servoing.</strong> Currently the system is open-loop
+                                    after the initial detection. Continuous visual feedback during approach would
+                                    improve grasp success rate.</li>
+                            </ul>
+
+                            <hr>
+
+                            <h2>Credits</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tool / Library</th>
+                                        <th>Role in This Project</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="https://opencv.org/">OpenCV</a></td>
+                                        <td>Color segmentation, contour detection, ArUco marker detection, homography
+                                            computation</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="https://github.com/MinishLab/model2vec">model2vec</a></td>
+                                        <td>Lightweight sentence embeddings for the text classifier
+                                            (<code>potion-base-8M</code>)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="https://scikit-learn.org/">scikit-learn</a></td>
+                                        <td>Logistic Regression classifier and label encoding</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="https://www.gradio.app/">Gradio</a></td>
+                                        <td>Web-based chat and teleop interface</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="https://numpy.org/">NumPy</a></td>
+                                        <td>Matrix operations, calibration storage, coordinate math</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="https://github.com/IntelRealSense/librealsense">Intel RealSense
+                                                SDK</a></td>
+                                        <td>Camera intrinsics and RGB frame capture via <code>pyrealsense2</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="https://www.waveshare.com/">RoArm-M2</a></td>
+                                        <td>4-DOF robotic manipulator (hardware)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="https://www.python.org/">Python</a></td>
+                                        <td>Everything is glued together in Python</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p><strong>Team:</strong> I built this project as part of a team of three. Thanks to my two
+                                teammates - <a href="https://github.com/szyfrowac">szyfrowac</a> and <a
+                                    href="https://github.com/Clepenji">clepenji</a> for the many late-night debugging
+                                sessions and calibration reruns.</p>
+        </div>
+
+        <div style="margin-top: 4rem; text-align: center; margin-bottom: 3rem;">
+            <a href="../index.html" class="muted-link">
+                &larr; Back to Home
+            </a>
+        </div>
+
+        <div class="blog-footer-social">
+            <a href="https://github.com/aceofspades07" class="nav-social-icon" target="_blank" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                </svg>
+            </a>
+            <a href="mailto:f20231071@hyderabad.bits-pilani.ac.in" class="nav-social-icon" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/karan-nair-202764288/?originalSubdomain=in" class="nav-social-icon"
+                target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.89 14.854h2.402v-3.844c0-.208.015-.416.08-.565.18-.416.592-.835 1.281-.835 1.34 0 1.51 1.02 1.51 2.514v3.73h2.404V9.66c0-2.435-1.298-3.568-3.033-3.568-1.422 0-2.074.793-2.432 1.366v-1.15H6.89c.032.68 0 7.225 0 7.225z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
