@@ -147,6 +147,33 @@
             <h2>3. The Sensors</h2>
             <p>Reliable navigation requires fusing data from multiple sources. Beetle uses a multi-modal sensor setup:
             </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sensor</th>
+                        <th>Model</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LIDAR</td>
+                        <td>YDLIDAR X2</td>
+                        <td>Provides 360 degree 2D laser scans (used in LIDAR SLAM)</td>
+                    </tr>
+                    <tr>
+                        <td>RGBD Camera</td>
+                        <td>Realsense D435</td>
+                        <td>Provides depth images and point clouds (used in RGBD SLAM)</td>
+                    </tr>
+                    <tr>
+                        <td>Tracking Camera</td>
+                        <td>Realsense T265</td>
+                        <td>Provides very stable pose estimation for the robot (used for VIO)</td>
+                    </tr>
+                </tbody>
+            </table>
             <p><strong>Why the T265?</strong> Wheel odometry on skid-steer robots is inaccurate due to wheel slippage.
                 The T265 solves this by providing Visual-Inertial Odometry that doesn't drift when the wheels slip,
                 serving as the reliable enough odom frame for the navigation stack.</p>
