@@ -184,7 +184,7 @@
                 </li>
             </ul>
             <p>The critic basically has the answer key. It knows the true velocity, the friction, the terrain heights,
-                everything. This makes value estimation way more accurate, which speeds up learning — but the actor
+                everything. This makes value estimation way more accurate, which speeds up learning - but the actor
                 never sees any of it.</p>
 
             <p><strong>Actor input (45 dims):</strong></p>
@@ -245,7 +245,7 @@
             <ul>
                 <li>3 conv layers (kernel size 3)</li>
                 <li>Channels: 45 → 128 → 64 → 32</li>
-                <li>BatchNorm after each conv (this is important—more below)</li>
+                <li>BatchNorm after each conv (this is important-more below)</li>
                 <li>MLP head: flatten → 128 → 3</li>
             </ul>
 
@@ -317,9 +317,9 @@ next_obs → policy → action → dynamics → next_next_obs
             <p>This is where things got tricky.</p>
             <p>I had to train three networks concurrently:</p>
             <ol>
-                <li><strong>Velocity Estimator</strong> — supervised learning (MSE against true velocity)</li>
-                <li><strong>Dreamer</strong> — supervised learning (MSE against actual next states, rewards, etc.)</li>
-                <li><strong>Actor-Critic</strong> — PPO (policy gradients)</li>
+                <li><strong>Velocity Estimator</strong> - supervised learning (MSE against true velocity)</li>
+                <li><strong>Dreamer</strong> - supervised learning (MSE against actual next states, rewards, etc.)</li>
+                <li><strong>Actor-Critic</strong> - PPO (policy gradients)</li>
             </ol>
             <p>If you just backpropagate through everything with one optimizer, it's a mess. PPO gradients are noisy.
                 Supervised gradients are clean. They interfere with each other. Gradient collapse ensues. The
@@ -366,7 +366,7 @@ actor_input = torch.cat([obs, velocity, dreams], dim=-1)
             <p>$$ \mathcal{R}_{\tau} = -\sum_{j} \max\left(0, |\tau_j| - 0.9 \cdot 45\right)^2 $$</p>
 
             <p>The penalty activates at 90% of the limit (40.5 Nm) and ramps up quadratically. Think of it like a
-                repulsive force field around the danger zone—the closer you get, the harder it pushes back. Same idea,
+                repulsive force field around the danger zone-the closer you get, the harder it pushes back. Same idea,
                 but for joint velocities and torques.</p>
 
             <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
@@ -384,7 +384,7 @@ actor_input = torch.cat([obs, velocity, dreams], dim=-1)
             <hr style="border: 0; border-top: 1px solid #333; margin: 2rem 0;">
 
             <h2>What's Next</h2>
-            <p>The Dreamer isn't just a training tool — it's a deployable world model.</p>
+            <p>The Dreamer isn't just a training tool - it's a deployable world model.</p>
             <p>Next step: plug it into an <strong>MPPI (Model Predictive Path Integral)</strong> controller for online
                 trajectory optimization. The dreamer will generate a sequence of 'dreams', which the MPPI planner will
                 use for generating an optimal action.</p>
