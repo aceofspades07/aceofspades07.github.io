@@ -341,7 +341,7 @@ actor_input = torch.cat([obs, velocity, dreams], dim=-1)
 </code></pre>
 
             <p>This is a one-way mirror. The estimator and dreamer inform the actor, but PPO gradients can't flow back
-                into them. Very clean.</p>
+                into them - which is a very clean approach.</p>
 
             <img src="../blog-posts/piploco/assets/training-architecture.png" alt="The Training Architecture"
                 style="width: 70%; max-width: 800px; margin: 2rem auto; display: block;">
